@@ -86,6 +86,13 @@ ORDER BY f1.film_id;
 
 
 -- 8. Get all pairs of customers that have rented the same film more than 3 times.
+SELECT r1.customer_id AS Customer_1, r2.customer_id AS Customer_2, COUNT(DISTINCT r1.inventory_id) AS number_of_times
+FROM sakila.rental r1 
+JOIN sakila.rental r2
+ON r1.inventory_id = r2.inventory_id AND r1.customer_id < r2.customer_id
+GROUP BY r1.customer_id, r2.customer_id
+HAVING Number_of_Times > 3
+ORDER BY Number_of_Times DESC;
 
-
+-- 9. For each film, list actor that has acted in more films.
 
